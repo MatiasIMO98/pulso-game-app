@@ -1,0 +1,103 @@
+export type Theme = {
+  id: string;
+  name: string;
+  dark: boolean;
+  bg: string;
+  card: string;
+  cardAlt: string;
+  text: string;
+  muted: string;
+  border: string;
+  primary: string;
+  primary2: string;
+  primarySoft: string;
+  onPrimary: string;
+  accent: string;
+  success: string;
+  danger: string;
+  bodyBase: string;
+  bodyLine: string;
+};
+
+export const THEMES: Record<string, Theme> = {
+  energia: {
+    id: 'energia',
+    name: 'Energía',
+    dark: true,
+    bg: '#0E0F13',
+    card: '#181A21',
+    cardAlt: '#22252F',
+    text: '#F2F3F5',
+    muted: '#8B90A0',
+    border: '#2A2D37',
+    primary: '#FF5A36',
+    primary2: '#FF2E63',
+    primarySoft: 'rgba(255,90,54,0.16)',
+    onPrimary: '#FFFFFF',
+    accent: '#FFB020',
+    success: '#3DDC97',
+    danger: '#FF4D6D',
+    bodyBase: '#2C3040',
+    bodyLine: '#0E0F13',
+  },
+  claro: {
+    id: 'claro',
+    name: 'Claro',
+    dark: false,
+    bg: '#F4F5F8',
+    card: '#FFFFFF',
+    cardAlt: '#EEF0F4',
+    text: '#14161C',
+    muted: '#6A7080',
+    border: '#E1E4EA',
+    primary: '#F0451F',
+    primary2: '#FF8A00',
+    primarySoft: 'rgba(240,69,31,0.12)',
+    onPrimary: '#FFFFFF',
+    accent: '#E08E00',
+    success: '#16A36B',
+    danger: '#D92D4B',
+    bodyBase: '#D5D9E2',
+    bodyLine: '#FFFFFF',
+  },
+  oceano: {
+    id: 'oceano',
+    name: 'Océano',
+    dark: true,
+    bg: '#07161C',
+    card: '#0E232B',
+    cardAlt: '#143039',
+    text: '#E8F6F8',
+    muted: '#7FA3AC',
+    border: '#1B3B45',
+    primary: '#1FD1C1',
+    primary2: '#3B82F6',
+    primarySoft: 'rgba(31,209,193,0.15)',
+    onPrimary: '#04201D',
+    accent: '#6FA8FF',
+    success: '#5BE39A',
+    danger: '#FF6B81',
+    bodyBase: '#1C3A44',
+    bodyLine: '#07161C',
+  },
+  neon: {
+    id: 'neon',
+    name: 'Neón',
+    dark: true,
+    bg: '#0B0716',
+    card: '#160F28',
+    cardAlt: '#211638',
+    text: '#F3EEFF',
+    muted: '#9A8EBB',
+    border: '#2C2048',
+    primary: '#B6FF3B',
+    primary2: '#2EF2C9',
+    primarySoft: 'rgba(182,255,59,0.14)',
+    onPrimary: '#16200A',
+    accent: '#C85CFF',
+    success: '#4DFFB5',
+    danger: '#FF4F8B',
+    bodyBase: '#2A1F45',
+    bodyLine: '#0B0716',
+  },
+};
