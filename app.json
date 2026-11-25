@@ -11,6 +11,8 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.pulso.fitness",
+      "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#0E0F13",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -25,7 +27,8 @@
     "plugins": [
       "expo-router",
       "expo-sqlite",
-      "expo-web-browser"
+      "expo-web-browser",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": false
