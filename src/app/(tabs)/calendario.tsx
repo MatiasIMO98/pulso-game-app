@@ -86,16 +86,19 @@ export default function Calendario() {
             </Text>
           ))}
         </View>
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-          {cells.map((d, i) => {
-            if (!d) return <View key={i} style={{ width: `${100 / 7}%`, height: 50 }} />;
+        {/* Filas explícitas de 7 días: con porcentajes + flexWrap, Android redondea y el domingo saltaba de línea */}
+        {Array.from({ length: cells.length / 7 }, (_, w) => (
+        <View key={w} style={{ flexDirection: 'row' }}>
+          {cells.slice(w * 7, w * 7 + 7).map((d, j) => {
+            const i = w * 7 + j;
+            if (!d) return <View key={i} style={{ flex: 1, height: 50 }} />;
             const k = ymd(d);
             const ev = events.filter((e) => e.date === k);
             const doneHere = history.some((h) => h.date === k);
             const isSel = k === sel;
             const isToday = k === todayStr;
             return (
-              <Pressable key={i} onPress={() => setSel(k)} style={{ width: `${100 / 7}%`, height: 50, alignItems: 'center', paddingTop: 4 }}>
+              <Pressable key={i} onPress={() => setSel(k)} style={{ flex: 1, height: 50, alignItems: 'center', paddingTop: 4 }}>
                 <View
                   style={{
                     width: 34,
@@ -119,6 +122,7 @@ export default function Calendario() {
             );
           })}
         </View>
+        ))}
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 8 }}>
           {TRAINING_TYPES.map((t) => (
             <View key={t.id} style={{ flexDirection: 'row', alignItems: 'center', marginRight: 12, marginTop: 4 }}>

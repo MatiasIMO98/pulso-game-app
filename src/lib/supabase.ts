@@ -38,7 +38,22 @@ if (isWeb) WebBrowser.maybeCompleteAuthSession();
 /** Dirección a la que Google/Supabase devuelven al usuario. Debe estar permitida en Supabase. */
 export const redirectUri = () => (isWeb ? window.location.origin : makeRedirectUri({ scheme: 'pulso', path: 'auth' }));
 
-async function sessionFromUrl(link: string) {
+const pending = new Map<string, Promise<void>>();
+
+/**
+ * Completa la sesión a partir del enlace de vuelta (pulso://auth?code=…).
+ * Puede llamarse dos veces con el mismo enlace (navegador + deep link): el código se canjea una sola vez.
+ */
+export function sessionFromUrl(link: string): Promise<void> {
+  let p = pending.get(link);
+  if (!p) {
+    p = exchangeFromUrl(link);
+    pending.set(link, p);
+  }
+  return p;
+}
+
+async function exchangeFromUrl(link: string) {
   const parsed = new URL(link);
   const query = parsed.searchParams;
   const hash = new URLSearchParams(parsed.hash.replace(/^#/, ''));
