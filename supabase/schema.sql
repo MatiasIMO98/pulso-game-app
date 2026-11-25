@@ -68,6 +68,13 @@ create index if not exists events_user_date on public.calendar_events (user_id, 
 create index if not exists measurements_user_key on public.measurements (user_id, key, date);
 create index if not exists templates_user on public.routine_templates (user_id);
 
+-- ---------- Permisos: solo usuarios con sesión (los proyectos nuevos no los dan por defecto) ----------
+
+grant usage on schema public to authenticated;
+grant select, insert, update, delete on table
+  public.user_settings, public.workouts, public.calendar_events, public.routine_templates, public.measurements
+to authenticated;
+
 -- ---------- Políticas: cada usuario solo accede a sus filas ----------
 
 create policy "own rows" on public.user_settings for all to authenticated
